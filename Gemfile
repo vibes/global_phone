@@ -11,6 +11,7 @@ group :tools do
 end
 
 group :development do
+  gem "rake"
   platform :mri_18 do
     gem "rake", "< 11"
     gem "json", "< 2"

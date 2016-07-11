@@ -8,6 +8,8 @@ GlobalPhone parses, validates, and formats local and international phone numbers
 
 **Pure Ruby. No dependencies.** GlobalPhone is designed for Ruby 1.9.3 and up. (Works in 1.8.7, too—just bring your own `json` gem.)
 
+[![Build Status](https://travis-ci.org/vibes/global_phone.svg?branch=master)](https://travis-ci.org/vibes/global_phone)
+
 ## Installation
 
 1. Add the `global_phone` gem to your app. For example, using Bundler:
