@@ -14,4 +14,6 @@ Gem::Specification.new do |s|
   s.authors = ["Sam Stephenson"]
   s.email = ["sstephenson@gmail.com"]
   s.homepage = "https://github.com/sstephenson/global_phone"
+
+  s.add_development_dependency "rake"
 end
