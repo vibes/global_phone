@@ -4,16 +4,18 @@ source "https://rubygems.org"
 
 gemspec :name => 'global_phone'
 
-group :tools do
-  install_if(lambda { RUBY_VERSION > '1.9' }) do
-    gem 'travis'
-  end
+install_if(lambda { RUBY_VERSION > '1.9' }) do
+  gem 'travis', :group => :tools
+  gem 'test-unit', '< 2'
 end
 
 group :development do
-  gem "rake"
-  platform :mri_18 do
+  if RUBY_VERSION < '1.9'
     gem "rake", "< 11"
+  else
+    gem "rake"
+  end
+  platform :mri_18 do
     gem "json", "< 2"
   end
 end
