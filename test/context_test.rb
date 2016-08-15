@@ -7,6 +7,19 @@ module GlobalPhone
       assert_raises(NoDatabaseError) { context.db }
     end
 
+    test "parsing e.164 number" do
+      assert_parses "+1-773-202-LUNA",
+        :country_code => "1", :national_string => "7732025862"
+    end
+
+    test "not parsing e.164 number" do
+      context.configurations = {
+        :enable_e161 => false
+      }
+      assert_does_not_parse "+1-773-202-LUNA",
+        :country_code => "1", :national_string => "7732025862"
+    end
+
     test "parsing international number" do
       assert_parses "+1-312-555-1212",
         :country_code => "1", :national_string => "3125551212"
