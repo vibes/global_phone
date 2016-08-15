@@ -27,17 +27,17 @@ module GlobalPhone
       @configurations = configurations
     end
 
-    def parse(string, territory_name = default_territory_name, configurations = configurations)
-      db.parse(string, territory_name, configurations)
+    def parse(string, territory_name = default_territory_name, config = configurations)
+      db.parse(string, territory_name, config)
     end
 
-    def normalize(string, territory_name = default_territory_name, configurations = configurations)
-      number = parse(string, territory_name, configurations)
+    def normalize(string, territory_name = default_territory_name, config = configurations)
+      number = parse(string, territory_name, config)
       number.international_string if number
     end
 
-    def validate(string, territory_name = default_territory_name, configurations = configurations)
-      number = parse(string, territory_name, configurations)
+    def validate(string, territory_name = default_territory_name, config = configurations)
+      number = parse(string, territory_name, config)
       number && number.valid?
     end
   end
