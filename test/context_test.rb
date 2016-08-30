@@ -12,7 +12,15 @@ module GlobalPhone
         :country_code => "1", :national_string => "7732025862"
     end
 
-    test "not parsing e.164 number" do
+    test "not remove invalid e.161 chars" do
+      context.configurations = {
+        :enable_e161 => false
+      }
+      assert_does_not_parse "299-foo-bar-555-1234",
+        :country_code => "1", :national_string => "2995551234"
+    end
+
+    test "not parsing e.161 number" do
       context.configurations = {
         :enable_e161 => false
       }
