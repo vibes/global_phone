@@ -5,7 +5,7 @@ module GlobalPhone
     extend Forwardable
 
     E161_MAPPING       = Hash[*"a2b2c2d3e3f3g4h4i4j5k5l5m6n6o6p7q7r7s7t8u8v8w9x9y9z9".split("")]
-    VALID_ALPHA_CHARS  = /[a-zA-Z]/
+    VALID_E161_CHARS  = /[a-zA-Z]/
     LEADING_PLUS_CHARS = /^\++/
     NON_DIALABLE_CHARS = /[^,#+\*\d]/
     SPLIT_FIRST_GROUP  = /^(\d+)(.*)$/
@@ -13,7 +13,12 @@ module GlobalPhone
     def self.normalize(string, configurations = {})
       enable_e161 = configurations[:enable_e161]
       normalized = string.to_s
-      normalized = normalized.gsub(VALID_ALPHA_CHARS) { |c| E161_MAPPING[c.downcase] } if enable_e161
+      if enable_e161
+        normalized = normalized.gsub(VALID_E161_CHARS) { |c| E161_MAPPING[c.downcase] }
+      elsif VALID_E161_CHARS.match(normalized)
+        # found e161 chars. did not expect them.
+        return ""
+      end
       normalized.gsub(LEADING_PLUS_CHARS, "+").
         gsub(NON_DIALABLE_CHARS, "")
     end
