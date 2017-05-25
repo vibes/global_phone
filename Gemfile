@@ -18,4 +18,5 @@ group :development do
   platform :mri_18 do
     gem "json", "< 2"
   end
+  gem "nokogiri", "~> 1.5"
 end
